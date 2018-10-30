@@ -4,6 +4,7 @@ After=network.target
 
 [Service]
 WorkingDirectory={{ethstats_dir}}
+Environment={{ws_secret}}
 ExecStart=/usr/bin/npm start
 KillMode=process
 Restart=on-failure
