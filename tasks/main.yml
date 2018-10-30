@@ -29,3 +29,21 @@
     state: started
     enabled: yes
     daemon_reload: yes
+
+- name: Clone eth-net-intelligence-api
+  git:
+    repo: https://github.com/cubedro/eth-net-intelligence-api
+    dest: "{{ethstats_client_dir}}"
+
+- name: Install eth-net-intelligence-api
+  npm:
+    path: "{{ethstats_client_dir}}"
+
+- name: Configure eth-net-intelligence-api
+  lineinfile:
+    dest: "{{ethstats_client_dir}}/app.json"
+    regexp: "{{item.regexp}}"
+    line: "{{item.line}}"
+  with_items:
+    - { regexp: 'WS_SERVER', line: '    "WS_SERVER": "{{ws_server}}"' }
+    - { regexp: 'WS_SECRET', line: '    "WS_SECRET": "{{ws_secret}}"' }

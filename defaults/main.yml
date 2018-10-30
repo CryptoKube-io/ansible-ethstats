@@ -1,2 +1,5 @@
 ---
 ethstats_dir: /opt/ethstats
+ethstats_client_dir: /opt/eth-net-intelligence-api
+ws_server: ws://{{groups['haproxy'][0]}}
+ws_secret: insecure
